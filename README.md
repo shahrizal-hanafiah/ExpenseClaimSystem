@@ -3,7 +3,9 @@ ExpenseClaimSystem(ECS) helps you to manage expenses claim through a flexible an
 
 ## Technology
 Language: C#, Javascript, JQuery
+
 Database: MSSQL
+
 Framework: .net Core 3.0
 
 ## Demo
