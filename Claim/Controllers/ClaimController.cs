@@ -12,5 +12,16 @@ namespace Claim.Controllers
         {
             return View();
         }
+
+        public IActionResult Apply()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult ProcessClaim(string form)
+        {
+            return Json("Ok");
+        }
     }
 }

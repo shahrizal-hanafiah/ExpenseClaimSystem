@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Apply";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Request Claim</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Claim Form</li>
+                    <li class="breadcrumb-item active">Request Claim</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">New Claim</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" id="claimForm">
+                        <div class="form-group card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Name">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Name" minlength="5" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="branchCode">Branch Code ( Office -Division)</label>
+                                        <div class="col-sm-6">
+                                            <!-- select -->
+                                            <div class="form-group">
+                                                <select class="custom-select" id="branchCode">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p>Bank Account Details ( payment will be made to this bank account):</p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="bankCode">Bank code / Branch code:</label>
+                                        <input type="text" class="form-control" id="bankCode" minlength="6" placeholder="Bank Code" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="accountNp">Bank-Account No:</label>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" id="accountNo" minlength="9" placeholder="Account No" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="accountHolder">Name in which A/C is held <code>(as per your bank statement or cheque book)</code>:</label>
+                                        <input type="text" class="form-control" id="accountHolderName" minlength="5" placeholder="Account Holder Name" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" id="btnClaim" class="btn btn-primary">Claim Details <span class="fa fa-chevron-circle-right"></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script>
+    $(function () {
+
+        function FormData() {
+            this.Name = $("#name").val(),
+            this.BranchCode = $("#branchCode").val(),
+            this.BankCode = $("#bankCode").val(),
+            this.AccountNo = $("#accountNo").val(),
+            this.AccountHolderName = $("#accountHolderName").val()
+        };
+
+        $("#claimForm").validate({
+            rules: {
+                name: "required",
+                bankCode: "required",
+                accountNo: "required",
+                accountHolderName: "required",
+            },
+            submitHandler: function (form) {
+                LoginProcess();
+            }
+        });
+
+        function LoginProcess() {
+            var data = new FormData();
+            $.ajax({
+                url: 'Claim/ProcessClaim',
+                data: data,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    alert(data);
+                }
+            });
+        }
+    });
+</script>

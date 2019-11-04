@@ -1,5 +1,12 @@
 (function ($) {
-  'use strict'
+    $('.nav-link a').click(function () {
+        //removing the previous selected menu state
+        $('.nav-link').find('li.active').removeClass('active');
+        //adding the state for this parent menu
+        $(this).parents("li").addClass('active');
+
+    });
+
     function maxWindow() {
         window.moveTo(0, 0);
 
