@@ -46,5 +46,10 @@ namespace Claim.Controllers
         {
             return View();
         }
+
+        public IActionResult GetClaim()
+        {
+            return View();
+        }
     }
 }

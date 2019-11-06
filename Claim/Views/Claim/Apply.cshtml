@@ -4,5 +4,103 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Apply</h1>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Dashboard</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Claim</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Claim Applied</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="claimTbl" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Claim No</th>
+                                <th>Claim Amount(MYR)</th>
+                                <th>Date Applied</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Trident</td>
+                                <td>
+                                    Internet
+                                    Explorer 4.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td> 4</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-default" title="View Details"><i class="fas fa-sticky-note"></i></a>
+                                        <a href="#" class="btn btn-default" title="Edit"><i class="fas fa-edit"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Trident</td>
+                                <td>
+                                    Internet
+                                    Explorer 4.0
+                                </td>
+                                <td>Win 95+</td>
+                                <td> 4</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-default" title="View Details"><i class="fas fa-sticky-note"></i></a>
+                                        <button type="button" class="btn btn-default" title="Edit" disabled><i class="fas fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Claim No</th>
+                                <th>Claim Amount(MYR)</th>
+                                <th>Date Applied</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<script src="~/plugins/datatables/jquery.dataTables.js"></script>
+<script src="~/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script>
+    $(function () {
+        $('#claimTbl').dataTable({
+            "ajax": {
+                "url": "~/Claim/GetClaim"
+            }
+        });
+    });
+</script>
 

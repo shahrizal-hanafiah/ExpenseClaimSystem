@@ -134,7 +134,7 @@
                 contentType: "application/json",
                 dataType: "json"
             }).done(function (response) {
-                window.location.href("Claim/ClaimDetail/?claimNo=" + response);
+                window.location.href = "Claim/ClaimDetail/?claimNo=" + response;
             }).fail(function (response) {
                 console.log('Error: ' + response);
             });

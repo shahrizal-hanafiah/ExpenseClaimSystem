@@ -1,4 +1,5 @@
-﻿using Claim.AppServices.Claim.Dto;
+﻿using AutoMapper;
+using Claim.AppServices.Claim.Dto;
 using Claim.Models;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,22 @@ namespace Claim.AppServices.Claim
                 throw ex;
             }
             return result;
+        }
+
+        public List<Claims> GetClaim(string userId)
+        {
+            try
+            {
+                using(var db = new ClaimContext())
+                {
+                    var result = db.Claims.Where(t => t.Name == userId).ToList();
+                    return result;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
